@@ -1,156 +1,59 @@
-header{
-    background-color: #266afc;
+/* Reset de márgenes y bordes */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Estilo general del navbar */
+  header {
     width: 100%;
-    height: 81px;    
-}
-
-.navbar{
+    background-color: #266afc;
+    padding: 1rem 0;
+  }
+  
+  nav div {
     display: flex;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-    position: relative;
-    z-index: 10;
-}
-
-.list-cat{
-    display: flex;    
-}
-.container-cat{
-    display: flex;
-}
-
-.list-cat li{
-    list-style: none;
-    padding: 10px;
-}
-
-.container-cat a{
-    text-decoration: none;
-    color: white;
-}
-
-.container-logo{
-    width: 25%;
-}
-
-.nav-logo{
-    height: 55px;
-}
-
-.container-cat a:hover{
-    opacity: 70%;
-}
-
-.icon-cart{
-    width: 40px;
-    stroke: white;
-    margin: 10px 30px;
-}
-
-.icon-menu{
-    width: 40px;
-    stroke: white;
-    cursor: pointer;    
-}
-
-.icon-cart:hover{
-    opacity: 70%;
-}
-
-.icon-menu:hover{
-    opacity: 70%;
-}
-
-.count-products{
-    position: absolute;
-    top: 55%;
-    right: 10px;
-
-    background-color: #000;
-    color: #fff;
-    width: 25px;
-    height: 25px;
-
-    display: flex;
-    justify-content: center;
     align-items: center;
-    border-radius: 50%;
-
-}
-
-#contador-productos{
-    font-size: 12px;
-}
-
-.container-cart-product{
-    position: absolute;
-    top: 81px;
-    right: 0;
-    background-color: #fff;
-    width: 400px;
-    z-index: 1;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.20);
-    border-radius: 10px;
-}
-
-.cart-product{
-    display: flex;
     justify-content: space-between;
-    padding: 30px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.20);
-}
-
-.info-cart-product{
+    max-width: 1200px; /* Limita el ancho máximo del navbar */
+    margin: 0 auto; /* Centra el navbar horizontalmente */
+    padding: 0 1rem; /* Espaciado lateral */
+  }
+  
+  /* Contenedor del logotipo alineado a la izquierda */
+  .container-logo img {
+    height: 50px; /* Tamaño del logotipo */
+  }
+  
+  /* Contenedor del menú centrado */
+  .container-cat ul {
     display: flex;
-    justify-content:space-between;
-    flex: 0.8;
-}
-
-.titulo-producto{
-    font-size: 20px;
-}
-
-.precio-producto{
-    font-weight: 700;
-    font-size: 20px;
-    margin-left: 10px;
-}
-
-.cantidad-producto{
-    font-weight: 400;
-    font-size: 20px;
-}
-
-.icon-close{
-    width: 25px;
-    height: 25px;
-}
-
-.icon-close:hover{
-    stroke: red;
-    cursor: pointer;
-}
-
-.cart-total{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px 0;
-    gap: 20px;
-}
-
-.cart-total h3{
-    font-size: 20px;
-    font-weight: 700;
-}
-
-.total-pagar{
-    font-size: 20px;
-    font-weight: 700;
-}
-
-.hidden-cart{
-    display: none;
-}
-
-
-
+    gap: 2.5rem; /* Espacio entre enlaces */
+    list-style: none;
+  }
+  
+  .container-cat ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.3rem;
+  }
+  
+  .container-cat ul li a:hover {
+    opacity: 0.8;
+  }
+  
+  /* Contenedor de íconos alineado a la derecha */
+  .container-icon a {
+    margin-left: 1rem;
+    color: #ffffff;
+  }
+  
+  .container-icon svg {
+    width: 35px;
+  }
+  
+  /* Estilos opcionales para íconos en hover */
+  .container-icon a:hover {
+    opacity: 0.8;
+  }

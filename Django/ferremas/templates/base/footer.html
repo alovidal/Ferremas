@@ -1,0 +1,43 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/footer.css' %}" />
+
+<footer class="pie-pagina">
+    <div class="grupo-1">
+      <div class="box" id="p-logo">
+        <figure>
+          <a href="{% url 'index' %}">
+            <img
+              src="{% static 'assets/logotipo.png' %}"
+              alt="El Club de los Combos"
+            />
+          </a>
+        </figure>
+      </div>
+      <div class="box" id="p-desc">
+        <h2>Sobre Nosotros</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime consectetur non, minus impedit, eveniet beatae aliquid et consequatur exercitationem maiores laboriosam quae a ratione iste modi eum corporis, porro quia.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, laudantium? Odio, debitis? Laborum suscipit fuga quae, corporis eos dignissimos quaerat consequatur, laboriosam ratione beatae, delectus ut voluptatum incidunt dicta nostrum.
+        </p>
+      </div>
+      <div class="box" id="p-social">
+        <h2>Siguenos</h2>
+        <div class="social">
+          <p><a href="https://www.facebook.com/">Facebook</a></p>
+          <p><a href="https://www.instagram.com/">Instagram</a></p>
+          <p><a href="https://twitter.com/">Twitter</a></p>
+          <p><a href="https://www.youtube.com/">Youtube</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grupo-2">
+      <small
+        >&copy; 2024 <b>Ferremas</b> - Todos los Derechos
+        Reservados.</small
+      >
+    </div>
+  </footer>

@@ -130,6 +130,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
-MEDIA_URL = 'media/'
+MEDIA_URL = 'assets/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'ferremas/static/media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'ferremas/static/assets')
