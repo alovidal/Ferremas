@@ -1,60 +1,89 @@
-.pie-pagina{
-    width: 100%;
-    background-color: black;
-    color: white;
+footer{
+  font-family: Helvetica;
 }
 
-.grupo-1{
-    display: flex;
+.pie-pagina {
+  width: 100%;
+  background-color: #266afc;
+  color: white;
 }
 
-.box{
-    height: 100%;
-    padding: 10px 30px ;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.grupo-1 {
+  display: flex;
 }
 
-.box figure img{
-    width: 120px;
+.grupo-1 section {
+  margin-top: 10px;
 }
 
-#p-logo{
-    width: 20%;
-    padding: 50px;
+section h2 {
+  font-weight: bold;
 }
 
-#p-desc{
-    width: 60%;
-    display: block;
-    text-align: justify;
+.box {
+  height: 100%;
+  padding: 10px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#p-social{
-    width: 10%;
-    display: block;
+.box figure img {
+  width: 250px;
 }
 
-.social a{
-    text-decoration: none;
-    color: white;
+#p-logo {
+  width: 20%;
 }
 
-.social a:hover{
-    opacity: 80%;
+#p-desc {
+  width: 55%;
+  display: block;
+  text-align: justify;
 }
 
-.grupo-2{
-    padding: 10px;
-    text-align: center;
+#p-social {
+  display: block;
 }
 
-@media screen and (max-width: 800px){
-    .grupo-1{
-        width: 90%;
-        grid-template-columns: repeat(1, 1fr);
-        grid-gap: 30px;
-        padding: 30px 0px;
-    }
+.social {
+  display: flex;
+}
+
+.social a {
+  text-decoration: none;
+  margin-left: 80px;
+  color: white;
+}
+
+.social a:hover {
+  opacity: 80%;
+}
+
+#p-contact {
+  width: 25%;
+  padding: 10px;
+}
+
+#p-contact p {
+  text-align: justify;
+}
+
+#p-contact a {
+  color: white;
+  text-decoration: none;
+}
+
+.grupo-2 {
+  padding: 10px;
+  text-align: center;
+}
+
+@media screen and (max-width: 800px) {
+  .grupo-1 {
+    width: 90%;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 30px;
+    padding: 30px 0px;
+  }
 }

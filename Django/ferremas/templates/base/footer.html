@@ -3,26 +3,25 @@
 <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
 
 <footer class="pie-pagina">
-    <div class="grupo-1">
-      <div class="box" id="p-logo">
-        <figure>
-          <a href="{% url 'index' %}">
-            <img
-              src="{% static 'assets/logotipo.png' %}"
-              alt="El Club de los Combos"
-            />
-          </a>
-        </figure>
-      </div>
-      <div class="box" id="p-desc">
-        <h2>Sobre Nosotros</h2>
-        <p>
-          Ferremas es una empresa orgullosamente mexicana con una trayectoria en el mercado de más de 70 años, dedicada a la compra y venta de ferretería y materiales de construccion        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, laudantium? Odio, debitis? Laborum suscipit fuga quae, corporis eos dignissimos quaerat consequatur, laboriosam ratione beatae, delectus ut voluptatum incidunt dicta nostrum.
-        </p>
-      </div>
-      <div class="box" id="p-social">
+  <div class="grupo-1">
+    <section class="box" id="p-logo">
+      <figure>
+        <a href="{% url 'index' %}">
+          <img
+            src="{% static 'assets/logotipo.png' %}"
+            alt="El Club de los Combos"
+          />
+        </a>
+      </figure>
+    </section>
+    <section class="box" id="p-desc">
+      <h2>Sobre Nosotros</h2>
+      <p>
+        Ferremas es una empresa orgullosamente mexicana con una trayectoria en
+        el mercado de más de 70 años, dedicada a la compra y venta de ferretería
+        y materiales de construccion
+      </p>
+      <div id="p-social">
         <h2>Siguenos</h2>
         <div class="social">
           <p><a href="https://www.facebook.com/">Facebook</a></p>
@@ -31,12 +30,23 @@
           <p><a href="https://www.youtube.com/">Youtube</a></p>
         </div>
       </div>
-    </div>
+    </section>
+    <section id="p-contact" style="margin-right: 40px">
+      <h2>Contactanos</h2>
+      <p>
+        <a href="https://maps.app.goo.gl/X3e7uppk27BvAZr19"
+          >J.J, Blvrd Torres Landa Pte 101AB, La Piscina, Industrial Santa
+          Crocce, 37439 León de los Aldama, Gto., México</a
+        >
+      </p>
+      <p> <a href="tel:(477) 778 3001">(477) 778 3001</a></p>
+      <p><a href="mailto:Info@ferremas.com?subject=Consulta%20de%20información&body=Hola,%20quisiera%20obtener%20más%20información%20sobre%20sus%20productos.">Info@ferremas.com</a></p>
+      <p>Lun – Vie : 8:30 am a 6:00 pm</p>
+      <p>Sabados: 9:00 am a 2:00 pm</p>
+    </section>
+  </div>
 
-    <div class="grupo-2">
-      <small
-        >&copy; 2024 <b>Ferremas</b> - Todos los Derechos
-        Reservados.</small
-      >
-    </div>
-  </footer>
+  <div class="grupo-2">
+    <small>&copy; 2024 <b>Ferremas</b> - Todos los Derechos Reservados.</small>
+  </div>
+</footer>
