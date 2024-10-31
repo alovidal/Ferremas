@@ -1,4 +1,4 @@
-footer{
+footer {
   font-family: Helvetica;
 }
 
@@ -10,10 +10,7 @@ footer{
 
 .grupo-1 {
   display: flex;
-}
-
-.grupo-1 section {
-  margin-top: 10px;
+  padding-top: 10px;
 }
 
 section h2 {
@@ -23,7 +20,6 @@ section h2 {
 .box {
   height: 100%;
   padding: 10px 30px;
-  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -36,18 +32,25 @@ section h2 {
   width: 20%;
 }
 
-#p-desc {
+#container-center {
   width: 55%;
-  display: block;
+}
+
+#p-desc {
   text-align: justify;
 }
 
-#p-social {
-  display: block;
+#p-desc p {
+  padding-top: 15px;
 }
 
 .social {
   display: flex;
+  margin-top: 15px;
+}
+
+#p-social h2 {
+  padding-top: 20px;
 }
 
 .social a {
@@ -67,11 +70,16 @@ section h2 {
 
 #p-contact p {
   text-align: justify;
+  padding-top: 15px;
 }
 
 #p-contact a {
   color: white;
   text-decoration: none;
+}
+
+#p-contact a:hover {
+  opacity: 80%;
 }
 
 .grupo-2 {
