@@ -1,6 +1,6 @@
 .pie-pagina{
     width: 100%;
-    background-color: #266afc;
+    background-color: black;
     color: white;
 }
 
@@ -17,7 +17,7 @@
 }
 
 .box figure img{
-    width: 200px;
+    width: 120px;
 }
 
 #p-logo{
