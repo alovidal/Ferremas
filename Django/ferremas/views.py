@@ -20,3 +20,7 @@ def carro(request):
 def seguimiento(request):
     context = {}        
     return render(request, "pages/seguimiento.html", context)
+
+def contacto(request):
+    context = {}
+    return render(request, "pages/contacto.html", context)
