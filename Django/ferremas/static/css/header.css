@@ -1,61 +1,105 @@
-/* Reset de márgenes y bordes */
+/* Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* Estilo general del navbar */
-  header {
-    font-family: Helvetica;
-    width: 100%;
-    background-color: #266afc;
-    padding: 1rem 0;
-  }
-  
-  nav div {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1200px; /* Limita el ancho máximo del navbar */
-    margin: 0 auto; /* Centra el navbar horizontalmente */
-    padding: 0 1rem; /* Espaciado lateral */
-  }
-  
-  /* Contenedor del logotipo alineado a la izquierda */
-  .container-logo img {
-    height: 50px; /* Tamaño del logotipo */
-  }
-  
-  /* Contenedor del menú centrado */
-  .container-cat ul {
-    display: flex;
-    gap: 2.5rem; /* Espacio entre enlaces */
-    list-style: none;
-    padding-left: 0;
-  }
-  
-  .container-cat ul li a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 1.3rem;
-  }
-  
-  .container-cat ul li a:hover {
-    opacity: 0.8;
-  }
-  
-  /* Contenedor de íconos alineado a la derecha */
-  .container-icon a {
-    margin-left: 1rem;
-    color: #ffffff;
-  }
-  
-  .container-icon svg {
-    width: 35px;
-  }
-  
-  /* Estilos opcionales para íconos en hover */
-  .container-icon a:hover {
-    opacity: 0.8;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Header */
+header {
+  font-family: Helvetica, Arial, sans-serif;
+  width: 100%;
+  background-color: #266afc;
+  padding: 1rem 0;
+}
+
+nav div {
+  display: flex;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.container-logo img {
+  height: 50px;
+}
+
+/* Navbar Links */
+.container-cat ul {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  padding-left: 15px;
+}
+
+.container-cat ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.3rem;
+  transition: opacity 0.3s ease;
+}
+
+.container-cat ul li a:hover {
+  opacity: 0.8;
+}
+
+/* Dropdown Menu */
+ul.dropdown, ul.sub-dropdown {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 10px 0;
+  list-style: none;
+  z-index: 1000;
+}
+
+.dropdown li, .sub-dropdown li {
+  padding: 10px 20px;
+}
+
+ul.dropdown li a, ul.sub-dropdown li a {
+  font-size: 15px;
+  color: #333;
+  text-align: left;
+  white-space: nowrap;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown li:hover, .sub-dropdown li:hover {
+  background-color: #f4f4f4;
+  border-radius: 8px;
+}
+
+/* Position Sub-dropdown to the Right */
+.dropdown li:hover .sub-dropdown {
+  display: block;
+  top: 0;
+  left: 100%;
+}
+
+/* Hover Effects */
+.container-cat li:hover > .dropdown {
+  display: block;
+}
+
+/* Icon Container */
+.container-icon {
+  margin-left: auto;
+  display: flex;
+  gap: 15px;
+}
+
+.container-icon a { 
+  color: #ffffff;
+  transition: opacity 0.3s ease;
+}
+
+.container-icon svg {
+  width: 35px;
+}
+
+.container-icon a:hover {
+  opacity: 0.8;
+}
