@@ -19,9 +19,9 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('FerremasA/', include('ferremas.urlsA')),
-    path('FerremasC/', include('ferremas.urlsC')),
-    path('FerremasJ/', include('ferremas.urlsJ')),
-    path('FerremasN/', include('ferremas.urlsN')),
+    path('Ferremas/', include('ferremas.urlsA')),
+    path('Ferremas/', include('ferremas.urlsC')),
+    path('Ferremas/', include('ferremas.urlsJ')),
+    path('Ferremas/', include('ferremas.urlsN')),
     path('api/', include('api.urls')),
 ]
