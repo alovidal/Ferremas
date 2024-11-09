@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .models import UserProfile
+from django.shortcuts import get_object_or_404, redirect
 
 def login_view(request):
     if request.method == 'POST':
@@ -14,7 +15,7 @@ def login_view(request):
             return redirect('home')  # Redirigir a la página principal
         else:
             messages.error(request, 'Usuario o contraseña incorrectos')
-    return render(request, 'login.html')
+    return render(request, 'pages/login.html')
 
 def register_view(request):
     context = {}
@@ -78,3 +79,16 @@ def register_view(request):
             return redirect('register')
 
     return render(request, "pages/register.html")
+
+#Eliminar Usuario
+
+def eliminar_usuario(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    
+    # Asegúrate de que el usuario que está intentando eliminarlo tenga permisos para hacerlo
+    # Puedes agregar una verificación de permisos según tus necesidades
+    
+    user.delete()  # Elimina al usuario de la base de datos
+    
+    # Redirige a la página de gestionar usuarios después de la eliminación
+    return redirect('gestionarUsuarios')  # Asegúrate de que la URL "gestionar_usuarios" esté definida

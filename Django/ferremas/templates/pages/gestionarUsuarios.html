@@ -36,7 +36,9 @@
                     <td>
                         <!-- Botones de acción con colores personalizados -->
                         <a href="#" class="btn-edit">Editar</a>
-                        <a href="#" class="btn-delete">Eliminar</a>
+                        <a href="{% url 'eliminar_usuario' user.id %}" class="btn-delete">Eliminar</a>
+                        
+
                     </td>
                 </tr>
                 {% empty %}
