@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Ferremas</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'assets/isotipoR.png' %}" />
+    <link rel="stylesheet" href="{% static 'css/cata.css' %}" />
+</head>
+<body class="bg-light">
+    
+    <!-- Header -->
+    <header>
+        {% include 'base/header.html' %}
+    </header>
+
+    <!-- Contenedor principal del formulario -->
+    <div class="main-container">
+        <div class="login-card">
+            <div class="card-content">
+                <h2 class="card-title">Formulario de Registro</h2>
+
+                <!-- Mostrar los mensajes de éxito o error -->
+                {% if messages %}
+                    <div class="alert-container">
+                        {% for message in messages %}
+                            <div class="alert {{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <form method="POST" action="{% url 'register' %}">
+                    {% csrf_token %}
+
+                    <!-- Nombre Completo -->
+                    <div class="form-group">
+                        <label for="full_name" class="form-label">Nombre Completo</label>
+                        <input type="text" id="full_name" name="full_name" class="form-control" required placeholder="Juan Pérez">
+                    </div>
+
+                    <!-- Correo Electrónico -->
+                    <div class="form-group">
+                        <label for="email" class="form-label">Correo Electrónico</label>
+                        <input type="email" id="email" name="email" class="form-control" required placeholder="juan.perez@example.com">
+                    </div>
+
+                    <!-- Teléfono -->
+                    <div class="form-group">
+                        <label for="phone" class="form-label">Teléfono</label>
+                        <input type="tel" id="phone" name="phone" class="form-control" required placeholder="(+34) 123 456 789">
+                    </div>
+
+                    <!-- Contraseña -->
+                    <div class="form-group">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input type="password" id="password" name="password" class="form-control" required placeholder="********">
+                    </div>
+
+                    <!-- Confirmar Contraseña -->
+                    <div class="form-group">
+                        <label for="confirm_password" class="form-label">Confirmar Contraseña</label>
+                        <input type="password" id="confirm_password" name="confirm_password" class="form-control" required placeholder="********">
+                    </div>
+
+                    <!-- Intereses -->
+                    <div class="form-group">
+                        <label for="interests" class="form-label">Intereses</label>
+                        <select id="interests" name="interests" class="form-control" required>
+                            <option value="">Seleccione una opción</option>
+                            <option value="herramientas">Herramientas</option>
+                            <option value="materiales">Materiales de Construcción</option>
+                            <option value="pinturas">Pinturas y Barnices</option>
+                            <option value="electricidad">Artículos de Electricidad</option>
+                            <option value="fontaneria">Fontanería</option>
+                        </select>
+                    </div>
+
+                    <!-- Aceptación de términos y condiciones -->
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" name="terms" required> Acepto los <a href="#">términos y condiciones</a>.
+                        </label>
+                    </div>
+
+                    <!-- Botón de Registro -->
+                    <button type="submit" class="btn-submit">Registrarse</button>
+                </form>
+
+                <div class="register-link">
+                    <p>¿Ya tienes cuenta? <a href="{% url 'login' %}">Inicia sesión aquí</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        {% include 'base/footer.html' %}
+    </footer>
+</body>
+</html>

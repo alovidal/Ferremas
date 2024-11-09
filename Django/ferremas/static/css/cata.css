@@ -1,0 +1,78 @@
+/* Estilos generales para la página */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    padding: 20px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #dee2e6;
+}
+
+.table th {
+    background-color: #f8f9fa;
+}
+
+/* Botones de acción */
+.btn-edit {
+    padding: 8px 16px;
+    background-color: #28a745; /* Verde */
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-edit:hover {
+    background-color: #218838; /* Verde oscuro */
+}
+
+.btn-delete {
+    padding: 8px 16px;
+    background-color: #dc3545; /* Rojo */
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-delete:hover {
+    background-color: #c82333; /* Rojo oscuro */
+}
+
+/* Estilos de alertas */
+.alert-container {
+    margin: 20px 0;
+}
+
+.alert {
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.alert.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}

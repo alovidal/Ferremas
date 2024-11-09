@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionar Usuarios - Ferremas</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'assets/isotipoR.png' %}" />
+    <link rel="stylesheet" href="{% static 'css/cata.css' %}" />
+</head>
+<body class="bg-light">
+    {% include 'base/header.html' %}
+
+    <div class="container">
+        <h2>Usuarios Registrados</h2>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre Completo</th>
+                    <th>Correo Electrónico</th>
+                    <th>Teléfono</th>
+                    <th>Intereses</th>
+                    <th>Fecha de Registro</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.first_name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.phone }}</td>  <!-- Accediendo al perfil del usuario -->
+                    <td>{{ user.interests }}</td>
+                    <td>{{ user.date_joined }}</td>  <!-- Fecha de registro -->
+                    <td>
+                        <!-- Botones de acción con colores personalizados -->
+                        <a href="#" class="btn-edit">Editar</a>
+                        <a href="#" class="btn-delete">Eliminar</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6">No hay usuarios registrados.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% include 'base/footer.html' %}
+</body>
+</html>
