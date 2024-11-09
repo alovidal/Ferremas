@@ -43,52 +43,51 @@ def register_view(request):
         password = request.POST['password']
         confirm_password = request.POST['confirm_password']
         interests = request.POST['interests']
-        terms_accepted = 'terms' in request.POST  # Verificar si el usuario aceptó los términos
+        terms_accepted = 'terms' in request.POST
 
-        # Validar si las contraseñas coinciden
+        # Verificar si las contraseñas coinciden
         if password != confirm_password:
             messages.error(request, 'Las contraseñas no coinciden.')
-            return redirect('register')
+            return redirect('register')  # Redirigir a la página de registro
 
-        # Validar si se aceptaron los términos
-        if not terms_accepted:
-            messages.error(request, 'Debes aceptar los términos y condiciones.')
-            return redirect('register')
+        # Verificar que el usuario no exista
+        if User.objects.filter(username=email).exists():
+            messages.error(request, 'El correo ya está registrado.')
+            return redirect('register')  # Redirigir si el correo ya está en uso
 
-        try:
-            # Crear el usuario
-            user = User.objects.create_user(username=email, password=password, email=email)
-            user.first_name = full_name  # Guardar el nombre completo
-            user.save()
+        # Crear un nuevo usuario
+        user = User.objects.create_user(username=email, email=email, password=password)
+        user.first_name = full_name.split()[0]  # Asignar el primer nombre al campo first_name
+        user.last_name = " ".join(full_name.split()[1:])  # Asignar el apellido al campo last_name
+        user.save()
 
-            # Crear el perfil del usuario
-            user_profile = UserProfile.objects.create(
-                user=user,
-                full_name=full_name,
-                phone=phone,
-                interests=interests,
-                terms_accepted=terms_accepted
-            )
-            user_profile.save()
+        # Crear un perfil de usuario
+        user_profile = UserProfile.objects.create(
+            user=user,
+            full_name=full_name,
+            phone=phone,
+            interests=interests,
+            terms_accepted=terms_accepted
+        )
 
-            messages.success(request, 'Registro exitoso. Ahora puedes iniciar sesión.')
-            return redirect('login')
+        # Mensaje de éxito
+        messages.success(request, 'Usuario registrado exitosamente.')
+        return redirect('login')  # Redirigir al login
 
-        except Exception as e:
-            messages.error(request, f'Ocurrió un error: {e}')
-            return redirect('register')
-
-    return render(request, "pages/register.html")
+    return render(request, 'pages/register.html')  # Si no es POST, simplemente renderizar el formulario de registro
 
 #Eliminar Usuario
 
 def eliminar_usuario(request, user_id):
     user = get_object_or_404(User, id=user_id)
     
-    # Asegúrate de que el usuario que está intentando eliminarlo tenga permisos para hacerlo
-    # Puedes agregar una verificación de permisos según tus necesidades
+    # Eliminar perfil relacionado si existe
+    try:
+        user_profile = UserProfile.objects.get(user=user)
+        user_profile.delete()
+    except UserProfile.DoesNotExist:
+        pass
     
-    user.delete()  # Elimina al usuario de la base de datos
-    
-    # Redirige a la página de gestionar usuarios después de la eliminación
-    return redirect('gestionarUsuarios')  # Asegúrate de que la URL "gestionar_usuarios" esté definida
+    # Eliminar el usuario
+    user.delete()
+    return redirect('gestionarUsuarios')  # Redirigir a la lista de usuarios
