@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import UserProfile
+from .models import *
 from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.contrib import messages
