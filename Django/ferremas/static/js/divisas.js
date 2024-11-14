@@ -1,3 +1,4 @@
+
 // Definimos un objeto con las series de divisas
 const seriesDivisas = {
     "ARS": "F072.CLP.ARS.N.O.D",   
@@ -11,7 +12,7 @@ const seriesDivisas = {
     "USD": "F073.TCO.PRE.Z.D",   
     "EUR": "F072.CLP.EUR.N.O.D",   
     "GBP": "F072.CLP.GBP.N.O.D",   
-    "AUD": "F072.CLP.AUD.N.O.D",   
+    "AUD": "F072.CLP.AUD.N.O.D",                        
     "CAD": "F072.CLP.CAD.N.O.D"
 };
 

@@ -9,4 +9,5 @@ urlpatterns = [
     path("seguimiento", viewsA.seguimiento, name="seguimiento"),
     path("contacto", viewsA.contacto, name="contacto"),
     path("divisas", viewsA.divisas, name="divisas"),
+    path("est", viewsA.estadoPedido, name="estadoPedido")
 ]
