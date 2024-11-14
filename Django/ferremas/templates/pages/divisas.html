@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Conversor CLP a Divisas</title>
     {% load static %}
-    <link rel="icon" href="{% static 'assets/isotipo.png' %}">
-</head>
-<body>
-    <h1>Conversor de CLP a Divisas</h1>
+    <link rel="icon" href="{% static 'assets/isotipo.png' %}" />
+  </head>
+  <body>
+    <main>
+      {% include 'base/header.html'%}
+      <h1>Conversor de CLP a Divisas</h1>
 
-    <label for="divisa">Selecciona la divisa:</label>
-    <select id="divisa">
+      <label for="divisa">Selecciona la divisa:</label>
+      <select id="divisa">
         <option value="ARS">Peso argentino</option>
         <option value="BRL">Real brasileño</option>
         <option value="CLP">Peso chileno</option>
@@ -27,19 +29,21 @@
         <option value="GBP">Libra esterlina</option>
         <option value="AUD">Dólar australiano</option>
         <option value="CAD">Dólar canadiense</option>
-    </select>
+      </select>
 
-    <br><br>
+      <br /><br />
 
-    <label for="monto">Monto en CLP:</label>
-    <input type="number" id="monto" placeholder="Ingrese monto en CLP" />
+      <label for="monto">Monto en CLP:</label>
+      <input type="number" id="monto" placeholder="Ingrese monto en CLP" />
 
-    <br><br>
+      <br /><br />
 
-    <button onclick="convertirClpADivisa()">Convertir</button>
+      <button onclick="convertirClpADivisa()">Convertir</button>
 
-    <h2 id="resultado"></h2>
+      <h2 id="resultado"></h2>
 
-    <script src="{% static 'js/divisas.js' %}"></script>
-</body>
+      <script src="{% static 'js/divisas.js' %}"></script>
+      {% include 'base/footer.html'%}
+    </main>
+  </body>
 </html>

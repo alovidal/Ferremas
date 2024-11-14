@@ -133,3 +133,5 @@ STATICFILES_DIRS = [
 MEDIA_URL = 'assets/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'ferremas/static/assets')
+
+CORS_ALLOWED_ORIGINS = True

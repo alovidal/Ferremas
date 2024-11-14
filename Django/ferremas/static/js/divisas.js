@@ -15,31 +15,57 @@ const seriesDivisas = {
     "CAD": "F072.CLP.CAD.N.O.D"
 };
 
-
 // Función para obtener los tipos de cambio
 async function obtenerTiposCambio() {
     const tiposCambio = {};
 
     for (let divisa in seriesDivisas) {
         const serie = seriesDivisas[divisa];
-        const response = await fetch(`https://si3.bcentral.cl/SieteRestWS/SieteRestWS.ashx?user=alonsini51@gmail.com&pass=x]mvp7MN$gXu$X:&firstdate=2024-01-01&lastdate=2024-12-31&timeseries=${serie}&function=GetSeries`);
-        const data = await response.json();
-        
-        const valorDivisa = data[divisa].last;
-        tiposCambio[divisa] = parseFloat(valorDivisa);
+        try {
+            const response = await fetch(`https://si3.bcentral.cl/SieteRestWS/SieteRestWS.ashx?user=alonsini51@gmail.com&pass=xmvp7MN$gXu$X:&firstdate=2024-01-01&lastdate=2024-12-31&timeseries=${serie}&function=GetSeries`);
+            
+            if (!response.ok) {
+                console.error(`Error en la solicitud para ${divisa}: ${response.statusText}`);
+                continue;
+            }
+
+            const data = await response.json();
+            console.log(data); // Inspecciona la estructura de los datos
+
+            // Asegúrate de que los datos estén en el formato esperado
+            if (data && data[divisa] && data[divisa].last) {
+                const valorDivisa = data[divisa].last;
+                tiposCambio[divisa] = parseFloat(valorDivisa);
+            } else {
+                console.error(`Datos no válidos para ${divisa}`);
+            }
+        } catch (error) {
+            console.error(`Error en la solicitud de la API para ${divisa}: ${error}`);
+        }
     }
 
     return tiposCambio;
 }
 
-function convertirClpADivisa(montoClp, divisa, tiposCambio) {
+// Función para convertir CLP a otra divisa
+async function convertirClpADivisa(montoClp, divisa) {
+    // Asegúrate de que los tipos de cambio estén disponibles
+    const tiposCambio = await obtenerTiposCambio();
+
+    // Verifica si la divisa está disponible
     if (!(divisa in tiposCambio)) {
         console.log(`Divisa '${divisa}' no disponible.`);
         return null;
     }
+
     const valorDivisa = tiposCambio[divisa];
     const montoConvertido = montoClp / valorDivisa;
     return montoConvertido.toFixed(2);
 }
 
-
+// Ejemplo de uso de la función
+convertirClpADivisa(10000, 'USD').then(resultado => {
+    if (resultado !== null) {
+        console.log(`El monto convertido es: ${resultado} USD`);
+    }
+});
