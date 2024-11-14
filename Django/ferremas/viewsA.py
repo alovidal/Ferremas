@@ -25,3 +25,7 @@ def seguimiento(request):
 def contacto(request):
     context = {}
     return render(request, "pages/contacto.html", context)
+
+def divisas(request):
+    context = {}        
+    return render(request, "pages/divisas.html", context)
