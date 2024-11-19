@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ferremas</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'assets/isotipoR.png' %}" />
+    <link rel="stylesheet" href="{% static 'css/jaime.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/general.css' %}" />
+</head>
+
+<body>
+    {% include 'base/header.html'%}
+
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 shadow-lg mx-auto text-center p-3">
+                    <!-- {% if request.user.is_authenticated %}
+                            <h3>Bienvenido {{request.user.username }}</h3>
+                        {% endif%} -->
+                    <br>
+                    <h2 class="my-3">Lista Usuarios</h2><br>
+
+                    <table class="table table-dark table-hover table-bordered">
+                        <thead>
+                            <th>Usuario</th>
+                            <th>Rut</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Tipo de usuario</th>
+                            <th>Modificar</th>
+                            <th>Eliminar</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    {% if mensaje%}
+                    <div class="alert alert-danger w-50 mx-auto">
+                        {{mensaje}}
+                    </div>
+                    {% endif%}
+                    <a href="">
+                        <button class="btn btn-info">
+                            veremos
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+    {% include 'base/footer.html'%}
+</body>
+
+</html>
