@@ -3,6 +3,7 @@ from .models import *
 
 #inicio con admin y gestion de otros usuarios
 # Register your models here.
+admin.site.register(TipoUsuario)
 admin.site.register(Usuario)
 admin.site.register(MarcaProductos)
 admin.site.register(CategoriaProductos)
