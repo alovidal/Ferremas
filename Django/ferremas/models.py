@@ -53,12 +53,10 @@ class Producto(models.Model):
             return f"Producto: {self.nombre}" 
         
     @property
-    def imageURL(self):
-        try:
-            url = self.imagen.url
-        except:
-            url = ''
-        return url
+    def imagenURL(self):
+        if self.imagen:
+            return self.imagen.url  
+        return ''
     
 class EstadoPedido(models.Model):
     idEstado = models.CharField(primary_key=True, db_column="idEstado", max_length=10)

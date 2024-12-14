@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferremas</title>
+    <link rel="stylesheet" href="{% static 'css/general.css' %}" />
+    <link rel="stylesheet" href="{% static '/css/bootstrap/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/nacho.css' %}" />
+    <link rel="icon" href="{% static 'assets/isotipoR.png' %}" />
+</head>
+<body>
+    {% include 'base/header.html'%}
+
+    <!-- Main -->
+     <main class="global-font">
+      
+        <!-- Inicio offcanva -->
+        
+        {% include "base/offcanva.html" %}
+  
+        <!-- Fin offcanva -->
+  
+        <section class="buscador">
+            <input type="search" name="buscador-catalogo" id="" placeholder="Buscar">
+        </section>
+        
+        <section class="main-catalogo">
+            <section class="filtros">
+                <article>
+                    <h1>Filtros</h1>
+                </article>
+            </section>
+            <section class="productos">
+                {% for producto in productos %}
+                    <article class="producto" id="producto-{{ producto.idProducto }}">
+                        <img src="{% static producto.imagen %}" alt="{{ producto.nombre }}">
+                        <div class="producto-desc">
+                            <div class="texto-desc">
+                                <h1>{{ producto.marca_descripcion }}</h1>
+                                <h2>{{ producto.nombre }}</h2>
+                                <h3>${{ producto.precio }}</h3>
+                            </div>
+                            <div class="button-desc">
+                                <button class="btn-agregar" onclick="agregarAlCarro({{ producto.idProducto }})">
+                                    Añadir al carro
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                {% endfor %}
+            </section>
+        </section>
+
+     </main>
+
+    {% include 'base/footer.html'%}
+
+    <script src="{% static '/js/carrito.js' %}"></script>
+    <script src="{% static '/js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

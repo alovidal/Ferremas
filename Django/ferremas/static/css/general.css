@@ -1,5 +1,163 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
 body {
     display: grid;
     min-height: 100dvh;
     grid-template-rows: auto 1fr auto;
+}
+
+.global-font {
+    font-family: Helvetica;
+}
+
+/* offcanva */
+.offcanvas {
+    background-color: #266afc !important;
+    min-width: 25vw;
+}
+
+.offcanvas .offcanvas-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 0.5em;
+}
+
+.offcanvas .offcanvas-header .offcanvas-title {
+    color: white;
+    font-size: 1.6em;
+    font-weight: 800;
+}
+
+.offcanvas .offcanvas-body .products .offcanva-msg {
+    text-align: center;
+    color: white;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.offcanvas .offcanvas-body .products .product {
+    display: flex;
+    flex-direction: column;
+}
+
+.offcanvas .offcanvas-body .products .product .product-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.offcanvas .offcanvas-body .products .product hr {
+    color: white;
+    font-weight: 500;
+}
+
+.offcanvas .offcanvas-body .products .product .product-container .product-desc{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+.offcanvas .offcanvas-body .products .product .product-container .product-desc h2{
+    font-size: 1.1em;
+    font-weight: 600;
+    color: white;
+}
+
+.offcanvas .offcanvas-body .products .product .product-container .product-desc img{
+    width: 5vw;
+    height: 10vh;
+    border-radius: 50%;
+    border: 0.318rem solid #1d48a5;
+}
+
+.offcanvas .offcanvas-body .products .product .product-container .product-desc .product-remove {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: white;
+    border: none;
+    background-color: #266afc;
+}
+
+.offcanvas .offcanvas-body .products .product .product-container .product-desc-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 50%;
+}
+
+.offcanvas .offcanvas-body .products .product .product-container .product-desc-2 .product-price {
+    display: flex;
+    justify-content: space-around;
+}
+
+.offcanvas .offcanvas-body .products .product .product-container .product-desc-2 .product-price .precio,
+.offcanvas .offcanvas-body .products .product .product-container .product-desc-2 .product-price .precio-2 {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: white;
+}
+
+.offcanvas .offcanvas-body .products .product .product-container .product-desc-2 .product-add {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.3em;
+}
+
+.offcanvas .offcanvas-body .products .product .product-container .product-desc-2 .product-add .product-menos,
+.offcanvas .offcanvas-body .products .product .product-container .product-desc-2 .product-add .product-contador,
+.offcanvas .offcanvas-body .products .product .product-container .product-desc-2 .product-add .product-mas{
+    background-color: #266afc;
+    border: none;
+    color: white;
+    font-size: 1.4em;
+    font-weight: 600;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+}
+
+.offcanvas .offcanvas-body .products .product .product-container .product-desc .product-remove:hover,
+.offcanvas .offcanvas-body .products .product .product-container .product-desc-2 .product-add .product-menos:hover,
+.offcanvas .offcanvas-body .products .product .product-container .product-desc-2 .product-add .product-mas:hover{
+    color: #1d48a5;
+}
+
+.offcanvas .offcanvas-body .carro-bottom .product-total hr {
+    color: white;
+    font-weight: 500;
+}
+
+.offcanvas .offcanvas-body .carro-bottom .product-total #producto-total {
+    display: inline-block;
+    color: white;
+    padding-left: 0.5em;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.offcanvas .offcanvas-body .carro-bottom .product-buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 3vh;
+}
+
+.offcanvas .offcanvas-body .carro-bottom .product-buttons .product-pago {
+    background-color: white;
+    border: 0.2em solid white;
+    border-radius: 1.25em;
+    color: #1d48a5;
+    font-size: 1.1em;
+    font-weight: bold;
+    width: 10vw;
+    height: 4vh;
+    padding: 0.2em 1em 0.2em 1em;
+
+    &:hover {
+        border: 0.2em solid #1d48a5;
+    }
 }

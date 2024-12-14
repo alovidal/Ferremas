@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferremas</title>
+    <link rel="stylesheet" href="{% static 'css/general.css' %}" />
+    <link rel="stylesheet" href="{% static '/css/bootstrap/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/nacho.css' %}" />
+    <link rel="icon" href="{% static 'assets/isotipoR.png' %}" />
+</head>
+<body>
+    {% include 'base/header.html'%}
+
+    <!-- Main -->
+     <main class="global-font">
+      
+        <!-- Inicio offcanva -->
+        
+        {% include "base/offcanva.html" %}
+  
+        <!-- Fin offcanva -->
+  
+          <h2 class="pago-datos" id="title-paso" style="color: #1d48a5">Datos</h2>
+          <section class="pago-container-2">
+            
+            <form id="pasos-container" action="" method="POST">
+    
+              {% csrf_token %}
+    
+              <!-- Primer paso - Datos del cliente -->
+              <div class="pago-datos" id='paso-compra-1'>
+                 <div class="form">
+                    <input class="form-input" type="email" name='correo' id="correo-paso"  placeholder="Correo (*)" required >
+                    <input class="form-input" type="text"  name='telefono' id="telefono-paso"placeholder="Teléfono (*)" required >
+                    <input class="form-input" type="text" name='direccion' id="direccion-paso"  placeholder="Dirección de entrega (*)" required >
+                    <div id="paso-msg-1"></div>
+                    <input class="form-submit" type="button" value="Aceptar" onclick="validaPasos(1)">
+                 </div>
+              </div>
+
+              <!-- Segundo paso - Eleccion retiro producto -->
+                <div class='pago-metodo' id='paso-compra-2' hidden>
+                    <div class='pago-option'>
+                    <div class='pago-group'>
+                        <input type='radio' class='m-radio' id='metodo-entrega-1' name='metodo-entrega' ></input>
+                        <label for='metodo-entrega-1' class='m-pago' >Retiro en tienda</label>
+                    </div>
+                
+                    <div class='pago-group'>
+                        <input type='radio' class='m-radio' id='metodo-entrega-2' name='metodo-entrega' ></input>
+                        <label for='metodo-entrega-2' class='m-pago' >Despacho</label>
+                    </div>
+                    </div>
+                    <div id='paso-msg-2'></div>
+                    <input type='button' class='m-pago-cont' value='Aceptar' onclick='validaPasos(2)' ></input>
+                </div>
+                
+                <!-- Tercer paso - Eleccion metodo de pago -->
+                <div class='pago-metodo' id='paso-compra-3' hidden>
+                    <div class='pago-option'>
+                        <div class='pago-group'>
+                            <input type='radio' class='m-radio' id='metodo-pago-1' name='metodo-pago' >
+                            <label for='metodo-pago-1' class='m-pago'>Transferencia o depósito bancario</label>
+                        </div>
+                
+                        <div class='pago-group'>
+                            <input type='radio' class='m-radio' id='metodo-pago-2' name='metodo-pago'>
+                            <label for='metodo-pago-2' class='m-pago'>WebPay</label>
+                        </div>
+                    </div>
+                    <div id='paso-msg-3'></div>
+                    <input type='button' class='m-pago-cont' value='Aceptar' onclick='validaPasos(3)'>
+                </div>
+              
+            </form>
+            
+            <!-- Resumen del pedido -->
+            <div class="pago-resumen">
+                <h2>Resumen del pedido</h2>
+                <hr>
+                <div class="productos-container" id="productos-container">
+                  
+                </div>
+                <div class="pago-total">
+                    <span>Total a pagar:</span>
+                    <span id="resumen-total">$</span>
+                </div>
+            </div>
+          </section>
+        </main>
+     </main>
+
+    {% include 'base/footer.html'%}
+
+    <script src="{% static '/js/carrito.js' %}"></script>
+    <script src="{% static '/js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

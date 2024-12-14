@@ -6,11 +6,19 @@
     <title>Ferremas</title>
     {% load static %}
     <link rel="icon" href="{% static 'assets/isotipoR.png' %}" />
+    <link rel="stylesheet" href="{% static '/css/bootstrap/bootstrap.min.css' %}" />
     <link rel="stylesheet" href="{% static 'css/alonso.css' %}" />
     <link rel="stylesheet" href="{% static 'css/general.css' %}" />
   </head>
   <body>
     {% include 'base/header.html'%}
+      
+    <!-- Inicio offcanva -->
+    
+    {% include "base/offcanva.html" %}
+
+    <!-- Fin offcanva -->
+
     <div class="search-bar">
       <input type="text" placeholder="Buscar..." />
       <span class="search-icon">
@@ -33,5 +41,8 @@
       </span>
     </div>
     {% include 'base/footer.html'%}
+    
+    <script src="{% static '/js/carrito.js' %}"></script>
+    <script src="{% static '/js/bootstrap/bootstrap.bundle.min.js' %}"></script>
   </body>
 </html>

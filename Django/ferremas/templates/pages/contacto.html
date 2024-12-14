@@ -1,52 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contacto - Ferremas</title>
     {% load static %}
     <link rel="icon" href="{% static 'assets/isotipoR.png' %}" />
+    <link rel="stylesheet" href="{% static '/css/bootstrap/bootstrap.min.css' %}" />
     <link rel="stylesheet" href="{% static 'css/general.css' %}" />
     <link rel="stylesheet" href="{% static 'css/contacto.css' %}" />
-</head>
-<body>
-{% include 'base/header.html'%}
-<main>
-    <div class="container">
+  </head>
+  <body>
+    {% include 'base/header.html'%}
+    <main>
+      <!-- Inicio offcanva -->
+
+      {% include "base/offcanva.html" %}
+
+      <!-- Fin offcanva -->
+
+      <div class="container">
         <section class="contact-section">
-            <div class="title">
-                <h2>Contacto</h2>
-                <hr>
-            </div>
-            <div class="form-contact">
-                <p>Ingresa tus datos y envíanos un mensaje. Nuestros asesores comerciales se pondrán en contacto contigo.</p>
-                <form action="">
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" placeholder="Ingresar nombre" required>
+          <div class="title">
+            <h2>Contacto</h2>
+            <hr />
+          </div>
+          <div class="form-contact">
+            <p>
+              Ingresa tus datos y envíanos un mensaje. Nuestros asesores
+              comerciales se pondrán en contacto contigo.
+            </p>
+            <form action="">
+              <label for="nombre">Nombre:</label>
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                placeholder="Ingresar nombre"
+                required
+              />
 
-                    <label for="apellido">Apellido:</label>
-                    <input type="text" id="apellido" name="apellido" placeholder="Ingresar apellido" required>
+              <label for="apellido">Apellido:</label>
+              <input
+                type="text"
+                id="apellido"
+                name="apellido"
+                placeholder="Ingresar apellido"
+                required
+              />
 
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" placeholder="Ingresar email" required>
+              <label for="email">Email:</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Ingresar email"
+                required
+              />
 
-                    <label for="telefono">Teléfono:</label>
-                    <input type="tel" id="telefono" name="telefono" placeholder="Ingresar teléfono">
+              <label for="telefono">Teléfono:</label>
+              <input
+                type="tel"
+                id="telefono"
+                name="telefono"
+                placeholder="Ingresar teléfono"
+              />
 
-                    <label for="mensaje">Mensaje:</label>
-                    <textarea id="mensaje" name="mensaje" placeholder="Escribir mensaje aqui"></textarea>
+              <label for="mensaje">Mensaje:</label>
+              <textarea
+                id="mensaje"
+                name="mensaje"
+                placeholder="Escribir mensaje aqui"
+              ></textarea>
 
-                    <button type="submit">Enviar</button>
-                </form>
-                <p>Si tienes alguna duda, no dudes en ponerte en contacto con nosotros.</p>
-            </div>
+              <button type="submit">Enviar</button>
+            </form>
+            <p>
+              Si tienes alguna duda, no dudes en ponerte en contacto con
+              nosotros.
+            </p>
+          </div>
         </section>
         <section class="location-section">
-            <p>Visítanos en: J.J, Blvrd Torres Landa Pte 101AB, La Piscina, Industrial Santa Crocce, 37439 León de los Aldama, Gto., México.</p>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1565.0565234766873!2d-101.72184537976479!3d21.09850002467745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842bbf6981cdfac1%3A0x8579051b1c153696!2sFerremas!5e0!3m2!1ses!2smx!4v1699637444300!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <p>
+            Visítanos en: J.J, Blvrd Torres Landa Pte 101AB, La Piscina,
+            Industrial Santa Crocce, 37439 León de los Aldama, Gto., México.
+          </p>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1565.0565234766873!2d-101.72184537976479!3d21.09850002467745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842bbf6981cdfac1%3A0x8579051b1c153696!2sFerremas!5e0!3m2!1ses!2smx!4v1699637444300!5m2!1ses!2smx"
+            width="600"
+            height="450"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
         </section>
-    </div>
-</main>
-{% include 'base/footer.html'%}
-</body>
+      </div>
+    </main>
+    {% include 'base/footer.html'%}
+
+    <script src="{% static '/js/carrito.js' %}"></script>
+    <script src="{% static '/js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+  </body>
 </html>

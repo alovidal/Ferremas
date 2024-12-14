@@ -1,0 +1,31 @@
+{% load static %}
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasRightLabel">Carro de compras</h5>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  
+  <div class="offcanvas-body">
+      <div class="products" id="d-products">
+          <div class="offcanva-msg d-none">
+              Tu carrito está vacío
+          </div>
+      </div>
+
+      <div class="carro-bottom">
+          <div class="product-total">
+              <span id="producto-total">Total a pagar: $0</span>
+              <hr>
+          </div>
+          
+          <div class="product-buttons">
+              <a href="{% url 'pago' %}" id="o-inipago">
+                  <button class="product-pago" type="button">
+                      Iniciar pago
+                  </button>
+              </a>
+          </div>
+      </div>
+  </div>
+</div>

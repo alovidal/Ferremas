@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
+from transbank.webpay.webpay_plus.transaction import Transaction
+from transbank.common.integration_type import IntegrationType
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -38,12 +41,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
     'api',
     'ferremas',
+    'rest_framework',
+    'coreapi',
+    'corsheaders',
+    'django_filters'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -133,3 +140,27 @@ STATICFILES_DIRS = [
 MEDIA_URL = 'assets/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'ferremas/static/assets')
+
+""" Corsheaders"""
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+""" Schema para la documentacion """
+
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
+}
+
+""" Webpay """
+# Webpay settings
+WEBPAY_COMMERCE_CODE = config("WEBPAY_COMMERCE_CODE", default="597055555532")
+WEBPAY_API_KEY = config("WEBPAY_API_KEY", default="597055555532")
+WEBPAY_ENVIRONMENT = config("WEBPAY_ENVIRONMENT", default="TEST")
+
+# Configurar el SDK de Webpay
+Transaction.configure_for_integration(
+    WEBPAY_COMMERCE_CODE,
+    WEBPAY_API_KEY,
+    IntegrationType.TEST if WEBPAY_ENVIRONMENT == "TEST" else IntegrationType.LIVE,
+)
