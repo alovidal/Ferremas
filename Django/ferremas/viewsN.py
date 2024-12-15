@@ -1,8 +1,8 @@
 import requests
 from django.shortcuts import render
 from .models import *
-from django.http import JsonResponse
-from transbank.webpay.webpay_plus.transaction import Transaction
+# from django.http import JsonResponse
+# from transbank.webpay.webpay_plus.transaction import Transaction
 
 # Create your views here.
 api_url = "http://127.0.0.1:8000/api/productos/"
@@ -27,7 +27,7 @@ def pago(request):
     context = {}
     return render(request, "pages/pago.html", context)
 
-def iniciar_transaccion(request):
+# def iniciar_transaccion(request):
     if request.method == "POST":
         try:
             buy_order = "orden123"
