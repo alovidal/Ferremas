@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ferremas</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'assets/isotipoR.png' %}" />
+    <link rel="stylesheet" href="{% static 'css/jaime.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/general.css' %}" />
+</head>
+
+<body>
+    {% include 'base/header.html'%}
+
+    <main class="contenedor-principal">
+        <div class="contenedor-sombreado">
+            <div class="contenedor-verordenes">
+                <div class="row">
+                    <h2 class="my-3">Solicitudes de Pedidos</h2><br>
+
+                    <table class="styled-table">
+                        <thead>
+                            <th>ID</th>
+                            <th>Usuario</th>
+                            <th>Detalle</th>
+                            <th>Total</th>
+                            <th>Estado</th>
+                            <th></th>
+                        </thead>
+                        <tbody>
+                            {% for soli in solicitudes %}
+                            <tr>
+                                <td>{{soli.idSolicitud}}</td>
+                                <td>{{soli.usuario.correo}}</td>
+                                <td>
+                                    <details>
+                                        <summary>Desplegar</summary>
+                                        <table class="styled-table">
+                                            <thead>
+                                                <th>Producto</th>
+                                                <th>Cantidad</th>
+                                                <th>Subtotal</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    {% for producto in soli.productos.productos %}
+                                                        {% for tmp in productos %}
+                                                        {% if tmp.idProducto == producto.idProducto %}
+                                                            <td>{{tmp.nombre}}</td>
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                        <td>{{producto.cantidad}}</td>
+                                                        <td>{{producto.subTotal}}</td>
+                                                    {% endfor %}
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </details>
+                                </td>
+                                <td>{{soli.productos.total}}</td>
+                                <td>{{soli.estado.descripcion}}</td>
+                                {% if soli.estado.descripcion != 'Rechazado' and soli.estado.descripcion != 'Cerrado' %}
+                                <td>
+                                    <details>
+                                        <summary>Desplegar</summary>
+                                        <table class="styled-table">
+                                            <tbody>
+                                                <tr>
+                                                    <form action="{% url 'rechazar' %}" method="POST">
+                                                        {% csrf_token %}
+                                                        <input type="text" value="{{soli.idSolicitud}}" id="idSolicitud" name="idSolicitud" hidden>
+                                                        <td><button class="btn rojo" type="submit">Rechazar</button></td>
+                                                    </form>
+                                                    {% if soli.estado.descripcion == 'Pendiente' %}
+                                                        <form action="{% url 'aceptar' %}" method="POST">
+                                                            {% csrf_token %}
+                                                            <input type="text" value="{{soli.idSolicitud}}" id="idSolicitud" name="idSolicitud" hidden>
+                                                            <td><button class="btn verde" type="submit">Aceptar</button></td>
+                                                        </form>
+                                                    {% endif %}
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </details>
+                                </td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% if mensaje%}
+                    <div class="alert alert-danger w-50 mx-auto">
+                        {{mensaje}}
+                    </div>
+                    {% endif%}
+                </div>
+                <div class="row">
+                    <h2 class="my-3">Ordenes de Solicitudes de Pedidos</h2><br>
+
+                    <table class="styled-table">
+                        <thead>
+                            <th>ID</th>
+                            <th>Detalle</th>
+                            <th>Total</th>
+                            <th>Estado</th>
+                            <th></th>
+                        </thead>
+                        <tbody>
+                            {% for orden in ordenes %}
+                            <tr>
+                                <td>{{orden.idOrden}}</td>
+                                <td>
+                                    <details>
+                                        <summary>Desplegar</summary>
+                                        <table class="styled-table">
+                                            <thead>
+                                                <th>Producto</th>
+                                                <th>Cantidad</th>
+                                                <th>Subtotal</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    {% for producto in orden.solicitudPedido.productos.productos %}
+                                                        {% for tmp in productos %}
+                                                        {% if tmp.idProducto == producto.idProducto %}
+                                                            <td>{{tmp.nombre}}</td>
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                        <td>{{producto.cantidad}}</td>
+                                                        <td>{{producto.subTotal}}</td>
+                                                    {% endfor %}
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </details>
+                                </td>
+                                <td>{{orden.solicitudPedido.productos.total}}</td>
+                                <td>{{orden.estadoOrden.descripcion}}</td>
+                                {% if orden.estadoOrden.descripcion == 'En espera' %}
+                                <td>
+                                    <details>
+                                        <summary>Desplegar</summary>
+                                        <table class="styled-table">
+                                            <tbody>
+                                                <tr>
+                                                    <form action="{% url 'rechazar' %}" method="POST">
+                                                        {% csrf_token %}
+                                                        <input type="text" value="{{orden.idOrden}}" id="idOrden" name="idOrden" hidden>
+                                                        <td><button class="btn rojo" type="submit">Rechazar</button></td>
+                                                    </form>
+                                                    <form action="{% url 'aceptar' %}" method="POST">
+                                                        {% csrf_token %}
+                                                        <input type="text" value="{{orden.idOrden}}" id="idOrden" name="idOrden" hidden>
+                                                        <td><button class="btn verde" type="submit">Entregado</button></td>
+                                                    </form>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </details>
+                                </td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% if mensaje%}
+                    <div class="alert alert-danger w-50 mx-auto">
+                        {{mensaje}}
+                    </div>
+                    {% endif%}
+                </div>
+                <div class="row">
+                    <h2 class="my-3">Ordenes de Pedidos</h2><br>
+
+                    <table class="styled-table">
+                        <thead>
+                            <th>ID</th>
+                            <th>Detalle</th>
+                            <th>Estado</th>
+                            <th></th>
+                        </thead>
+                        <tbody>
+                            {% for pedido in pedidos %}
+                            <tr>
+                                <td>{{pedido.idPedido}}</td>
+                                <td>
+                                    <details>
+                                        <summary>Desplegar</summary>
+                                        <table class="styled-table">
+                                            <thead>
+                                                <th>Producto</th>
+                                                <th>Cantidad</th>
+                                                <th>Subtotal</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    {% for detalle in detalles %}
+                                                    {% if detalle.pedido == pedido %}
+                                                        {% for tmp in productos %}
+                                                        {% if tmp == detalle.producto %}
+                                                            <td>{{tmp.nombre}}</td>
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                        <td>{{detalle.cantidad}}</td>
+                                                        <td>{{detalle.total}}</td>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </details>
+                                </td>
+                                <td>{{pedido.estado.descripcion}}</td>
+                                {% if pedido.estado.descripcion == 'En espera' %}
+                                <td>
+                                    <details>
+                                        <summary>Desplegar</summary>
+                                        <table class="styled-table">
+                                            <tbody>
+                                                <tr>
+                                                    <form action="{% url 'rechazar' %}" method="POST">
+                                                        {% csrf_token %}
+                                                        <input type="text" value="{{pedido.idPedido}}" id="idPedido" name="idPedido" hidden>
+                                                        <td><button class="btn rojo" type="submit">Rechazar</button></td>
+                                                    </form>
+                                                    <form action="{% url 'aceptar' %}" method="POST">
+                                                        {% csrf_token %}
+                                                        <input type="text" value="{{pedido.idPedido}}" id="idPedido" name="idPedido" hidden>
+                                                        <td><button class="btn verde" type="submit">Entregado</button></td>
+                                                    </form>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </details>
+                                </td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% if mensaje%}
+                    <div class="alert alert-danger w-50 mx-auto">
+                        {{mensaje}}
+                    </div>
+                    {% endif%}
+                </div>
+            </div>
+        </div>
+    </main>
+    {% include 'base/footer.html'%}
+</body>
+
+
+</html>

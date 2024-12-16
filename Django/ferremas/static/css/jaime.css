@@ -1,0 +1,92 @@
+.contenedor-principal{
+    display: grid;
+    grid-template-columns: 1fr 10fr 1fr; /* 3 columnas de igual ancho */
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.contenedor-sombreado{
+    display: grid;
+    grid-template-columns: 1fr 10fr 1fr;
+    grid-column: 2;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.35);
+    border-radius: 5px;
+}
+
+.contenedor-verordenes{
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: repeat(12,1fr);
+    align-items: center;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.row{
+    grid-column-start: 1;
+    grid-column-end: -1;
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+.styled-table th, .styled-table td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table tbody tr:nth-child(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #ddd;
+}
+
+/* Estilo base para los botones */
+.btn {
+    padding: 2px 2px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Botón Aceptar */
+.verde {
+    background-color: #4CAF50; /* Verde */
+}
+
+.verde:hover {
+    background-color: #45a049; /* Verde más oscuro */
+}
+
+/* Botón Rechazar */
+.rojo {
+    background-color: #f44336; /* Rojo */
+}
+
+.rojo:hover {
+    background-color: #d32f2f; /* Rojo más oscuro */
+}
+
+/* Agregar un efecto de presionado */
+.btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}

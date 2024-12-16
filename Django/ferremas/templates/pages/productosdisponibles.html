@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ferremas</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'assets/isotipoR.png' %}" />
+    <link rel="stylesheet" href="{% static 'css/jaime.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/general.css' %}" />
+</head>
+
+<body>
+    {% include 'base/header.html'%}
+
+    <main class="contenedor-principal">
+        <div class="contenedor-sombreado">
+            <div class="contenedor-verordenes">
+                <div class="row">
+                    <h2 class="my-3">Lista Productos Disponibles</h2><br>
+
+                    <table class="styled-table">
+                        <thead>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Stock</th>
+                            <th>Marca</th>
+                            <th>Categoría</th>
+                            <th>Imagen</th>
+                        </thead>
+                        <tbody>
+                            {% for tmp in productos %}
+                            <tr>
+                                <td>{{tmp.idProducto}}</td>
+                                <td>{{tmp.nombre}}</td>
+                                <td>{{tmp.descripcion}}</td>
+                                <td>{{tmp.precio}}</td>
+                                <td>{{tmp.stock}}</td>
+                                <td>{{tmp.marca.descripcion}}</td>
+                                <td>{{tmp.categoria.descripcion}}</td>
+                                <td><img src="{{tmp.imagen.url}}" alt="..." style="width: 50%;"></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% if mensaje%}
+                    <div class="alert alert-danger w-50 mx-auto">
+                        {{mensaje}}
+                    </div>
+                    {% endif%}
+                    <!-- <a href="">
+                        <button class="btn btn-info">
+                            veremos
+                        </button>
+                    </a> -->
+                </div>
+            </div>
+        </div>
+    </main>
+    {% include 'base/footer.html'%}
+</body>
+
+</html>

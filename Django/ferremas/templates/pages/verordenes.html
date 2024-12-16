@@ -14,36 +14,62 @@
 <body>
     {% include 'base/header.html'%}
 
-    <main>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 shadow-lg mx-auto text-center p-3">
-                    <!-- {% if request.user.is_authenticated %}
-                            <h3>Bienvenido {{request.user.username }}</h3>
-                        {% endif%} -->
-                    <br>
-                    <h2 class="my-3">Lista Usuarios</h2><br>
+    <main class="contenedor-principal">
+        <div class="contenedor-sombreado">
+            <div class="contenedor-verordenes">
+                <div class="row">
+                    <h2 class="my-3">Lista Ordenes</h2><br>
 
-                    <table class="table table-dark table-hover table-bordered">
+                    <table class="styled-table">
                         <thead>
                             <th>Usuario</th>
-                            <th>Rut</th>
                             <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Tipo de usuario</th>
+                            <th>Detalle</th>
+                            <th>Total</th>
+                            <th>Estado</th>
                             <th>Modificar</th>
                             <th>Eliminar</th>
                         </thead>
                         <tbody>
+                            {% for pedido in pedidos %}
+                            {% if pedido.estado.descripcion == 'En espera' %}
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{pedido.usuario.correo}}</td>
+                                <td>{{pedido.usuario.pnombre}}</td>
+                                <td>
+                                    <details>
+                                        <summary>Desplegar</summary>
+                                        <table class="styled-table">
+                                            <thead>
+                                                <th>Id</th>
+                                                <th>Producto</th>
+                                                <th>Cantidad</th>
+                                                <th>Subtotal</th>
+                                            </thead>
+                                            <tbody>
+                                                {% for detalle in detalles %}
+                                                {% if detalle.pedido == pedido %}
+                                                <tr>
+                                                    {% for producto in productos %}
+                                                        <td>{{detalle.idDetalle}}</td>
+                                                        <td>{{detalle.producto.nombre}}</td>
+                                                        <td>{{detalle.cantidad}}</td>
+                                                        <td>{{detalle.total}}</td>
+                                                    {% endfor %}
+                                                </tr>
+                                                {% endif %}
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </details>
+                                </td>
+                                <td>{{pedido.total}}</td>
+                                <td>{{pedido.estado.descripcion}}</td>
                                 <td></td>
                                 <td></td>
                             </tr>
+                            {% endif %}
+                            {% endfor %}
                         </tbody>
                     </table>
                     {% if mensaje%}
@@ -51,11 +77,75 @@
                         {{mensaje}}
                     </div>
                     {% endif%}
-                    <a href="">
+                    <!-- <a href="">
                         <button class="btn btn-info">
                             veremos
                         </button>
-                    </a>
+                    </a> -->
+                </div>
+                <div class="row">
+                    <h2 class="my-3">Lista Ordenes de Solicitudes</h2><br>
+
+                    <table class="styled-table">
+                        <thead>
+                            <th>Usuario</th>
+                            <th>Nombre</th>
+                            <th>Detalle</th>
+                            <th>Total</th>
+                            <th>Estado</th>
+                            <th>Modificar</th>
+                            <th>Eliminar</th>
+                        </thead>
+                        <tbody>
+                            {% for orden in ordenes %}
+                            {% if orden.estadoOrden.descripcion == 'En espera' %}
+                            <tr>
+                                <td>{{orden.solicitudPedido.usuario.correo}}</td>
+                                <td>{{orden.solicitudPedido.usuario.pnombre}}</td>
+                                <td>
+                                    <details>
+                                        <summary>Desplegar</summary>
+                                        <table class="styled-table">
+                                            <thead>
+                                                <th>Producto</th>
+                                                <th>Cantidad</th>
+                                                <th>Subtotal</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    {% for producto in orden.solicitudPedido.productos.productos %}
+                                                        {% for tmp in productos %}
+                                                        {% if tmp.idProducto == producto.idProducto %}
+                                                            <td>{{tmp.nombre}}</td>
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                        <td>{{producto.cantidad}}</td>
+                                                        <td>{{producto.subTotal}}</td>
+                                                    {% endfor %}
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </details>
+                                </td>
+                                <td>{{orden.solicitudPedido.productos.total}}</td>
+                                <td>{{orden.estadoOrden.descripcion}}</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% if mensaje%}
+                    <div class="alert alert-danger w-50 mx-auto">
+                        {{mensaje}}
+                    </div>
+                    {% endif%}
+                    <!-- <a href="">
+                        <button class="btn btn-info">
+                            veremos
+                        </button>
+                    </a> -->
                 </div>
             </div>
         </div>
