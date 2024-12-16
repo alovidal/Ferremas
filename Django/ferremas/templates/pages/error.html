@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferremas</title>
+    <link rel="stylesheet" href="{% static 'css/general.css' %}" />
+    <link rel="stylesheet" href="{% static '/css/bootstrap/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/nacho.css' %}" />
+    <link rel="icon" href="{% static 'assets/isotipoR.png' %}" />
+
+    <style>
+        .main-error {
+            text-align: center;
+            margin-top: 10vh;
+
+            h1 {
+                font-weight: bold;
+            }
+
+            p {
+                font-size: 1.2em;
+            }
+        }
+
+        button {
+            margin: 0 auto;
+            border: 0.218rem solid #1d48a5;
+            background-color: transparent;
+            border-radius: 0.5em;
+            color: #1d48a5;
+            font-weight: 800;
+            text-align: center;
+            width: 10vw;
+            height: 4vh;
+        }
+    </style>
+</head>
+<body>
+    {% include 'base/header.html'%}
+
+    <main class="global-font main-error">
+        <h1>Hubo un problema</h1>
+        <p>Intentalo nuevamente...</p>
+        <button onclick="volverPago()">Volver al pago</button>
+    </main>
+    
+    {% include 'base/footer.html'%}
+
+    <script src="{% static '/js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+    <script>
+        function volverPago() {
+            window.location.href = "/pago"
+        }
+    </script>
+</body>
+</html>

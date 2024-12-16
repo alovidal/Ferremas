@@ -26,7 +26,7 @@
           <h2 class="pago-datos" id="title-paso" style="color: #1d48a5">Datos</h2>
           <section class="pago-container-2">
             
-            <form id="pasos-container" action="" method="POST">
+            <form id="pasos-container" action="{% url 'procesa_pedido' %}" method="POST">
     
               {% csrf_token %}
     
@@ -62,19 +62,18 @@
                 <div class='pago-metodo' id='paso-compra-3' hidden>
                     <div class='pago-option'>
                         <div class='pago-group'>
-                            <input type='radio' class='m-radio' id='metodo-pago-1' name='metodo-pago' >
+                            <input type='radio' class='m-radio' id='metodo-pago-1' name='metodo-pago' value="transferencia">
                             <label for='metodo-pago-1' class='m-pago'>Transferencia o depósito bancario</label>
                         </div>
                 
                         <div class='pago-group'>
-                            <input type='radio' class='m-radio' id='metodo-pago-2' name='metodo-pago'>
+                            <input type='radio' class='m-radio' id='metodo-pago-2' name='metodo-pago' value="webpay">
                             <label for='metodo-pago-2' class='m-pago'>WebPay</label>
                         </div>
                     </div>
                     <div id='paso-msg-3'></div>
                     <input type='button' class='m-pago-cont' value='Aceptar' onclick='validaPasos(3)'>
                 </div>
-              
             </form>
             
             <!-- Resumen del pedido -->
@@ -96,6 +95,7 @@
     {% include 'base/footer.html'%}
 
     <script src="{% static '/js/carrito.js' %}"></script>
+    <script src="{% static '/js/webpay.js' %}"></script>
     <script src="{% static '/js/bootstrap/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>

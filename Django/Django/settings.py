@@ -11,10 +11,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-from decouple import config
-from transbank.common.options import WebpayOptions
-from transbank.common.integration_type import IntegrationType
-from transbank.webpay.webpay_plus.transaction import Transaction
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -154,14 +150,11 @@ REST_FRAMEWORK = {
 }
 
 """ Webpay """
-# Webpay settings
-WEBPAY_COMMERCE_CODE = config("WEBPAY_COMMERCE_CODE", default="597055555532")
-WEBPAY_API_KEY = config("WEBPAY_API_KEY", default="597055555532")
-WEBPAY_ENVIRONMENT = config("WEBPAY_ENVIRONMENT", default="TEST")
 
-# Configuración de Webpay
-webpay_options = WebpayOptions(
-    commerce_code=WEBPAY_COMMERCE_CODE,
-    api_key=WEBPAY_API_KEY,
-    integration_type=IntegrationType.TEST if WEBPAY_ENVIRONMENT == "TEST" else IntegrationType.LIVE
-)
+TRANSBANK_COMMERCE_CODE = '597055555532'
+TRANSBANK_API_KEY = '579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C'
+TRANSBANK_ENVIRONMENT = 'TEST' 
+
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "index"
+LOGOUT_REDIRECT_IRL = "logout"

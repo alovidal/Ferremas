@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferremas</title>
+    <link rel="stylesheet" href="{% static 'css/general.css' %}" />
+    <link rel="stylesheet" href="{% static '/css/bootstrap/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/nacho.css' %}" />
+    <link rel="icon" href="{% static 'assets/isotipoR.png' %}" />
+</head>
+<body>
+    {% include 'base/header.html'%}
+
+    <main class="global-font main-exito">
+        <h1>¡Pago exitoso!</h1>
+        <p>Detalles de la transacción:</p>
+        <div class="detalle">
+            <table>
+                <tr>
+                    <td class="td1">Fecha: </td>
+                    <td class="td2">{{pedido.fecha}}</td>
+                </tr>
+                <tr>
+                    <td class="td1">Dirección: </td>
+                    <td class="td2">{{pedido.direccion}}</td>
+                </tr>
+                <tr>
+                    <td class="td1">Productos: </td>
+                    {% for det in detalle %}
+                        <td class="td2">{{det.producto.nombre}} ; </td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td class="td1">Total: </td>
+                    <td class="td2">{{pedido.total}}</td>
+                </tr>
+            </table>
+        </div>
+        <button onclick="vaciarCarro()">Volver al inicio</button>
+    </main>
+    
+    {% include 'base/footer.html'%}
+
+    <script src="{% static '/js/carrito.js' %}"></script>
+    <script src="{% static '/js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

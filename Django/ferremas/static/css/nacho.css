@@ -231,30 +231,6 @@ main {
     background-color: white;
 }
 
-/* Tercer paso del pago */
-
-.pago-container-2 .pago-details {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.pago-container-2 .pago-details .button-pagar {
-    width: 12vw;
-    height: 5vh;
-    font-weight: 600;
-    margin-top: 1em;
-    color: white;
-    background-color: #61888C;
-    border: 0.218rem solid #436A6F;
-    border-radius: 0.5em;
-}
-
-.pago-container-2 .pago-details .button-pagar:hover {
-    border: 0.218rem solid white;
-}
-
 /* Resumen del pedido */
 
 .pago-container-2 .pago-resumen {
@@ -302,4 +278,43 @@ main {
     justify-content: space-between;
     color: #1d48a5;
     font-weight: 500;
+}
+
+/* Exito.html */
+.main-exito {
+    text-align: center;
+    margin-top: 5vh;
+
+    h1 {
+        font-weight: bold;
+    }
+
+    p {
+        font-size: 1.2em;
+    }
+
+    .detalle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 5vh;
+
+        table .td1 {
+            text-align: start;
+            padding: 0.5em 1em 0.5em 1em;
+        }
+    }
+
+    button {
+        margin: 0 auto;
+        border: 0.218rem solid #1d48a5;
+        background-color: transparent;
+        border-radius: 0.5em;
+        color: #1d48a5;
+        font-weight: 800;
+        text-align: center;
+        width: 10vw;
+        height: 4vh;
+    }
 }

@@ -184,43 +184,44 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Validate and handle payment steps
-function validaPasos(paso) {
+async function validaPasos(paso) {
     switch (paso) {
+        case 1:
+            if (validaPaso1()) {
+                // Ocultar el paso 1 y mostrar el paso 2
+                document.getElementById('paso-compra-1').hidden = true;
+                document.getElementById('paso-compra-2').hidden = false;
+                document.getElementById("title-paso").textContent = "Método de entrega";
+            }
+            break;
+        case 2:
+            if (validaPaso2()) {
+                // Ocultar el paso 2 y mostrar el paso 3
+                document.getElementById('paso-compra-2').hidden = true;
+                document.getElementById('paso-compra-3').hidden = false;
+                document.getElementById("title-paso").textContent = "Método de pago";
+            }
+            break;
         case 3:
             if (validaPaso3()) {
-                const webpay = document.getElementById('metodo-pago-2');
-                
-                if (webpay.checked) {
-                    // Iniciar Webpay
-                    fetch("/webpay/iniciar/", { method: "POST" })
-                        .then(response => response.json())
-                        .then(data => {
-                            // Redirigir al panel de Webpay con token
-                            const form = document.createElement("form");
-                            form.method = "POST";
-                            form.action = data.url;
-
-                            const tokenInput = document.createElement("input");
-                            tokenInput.type = "hidden";
-                            tokenInput.name = "token_ws";
-                            tokenInput.value = data.token;
-
-                            form.appendChild(tokenInput);
-                            document.body.appendChild(form);
-                            form.submit();
-                        })
-                        .catch(error => {
-                            console.error("Error al iniciar Webpay:", error);
-                            showError("paso-msg-3", "Hubo un problema al conectar con Webpay. Inténtalo de nuevo.");
-                        });
-                } else {
-                    // Otros métodos de pago (por ejemplo, transferencia)
-                    document.getElementById("pasos-container").submit();
+                try {
+                    await importCarro();
+                    
+                    const form = document.getElementById('pasos-container');
+                    if (form) {
+                        form.submit();
+                    }
+                } catch (error) {
+                    console.error("Error al procesar el pago:", error);
+                    showError("paso-msg-3", "Error al procesar el pago. Por favor intente nuevamente.");
                 }
             }
             break;
+        default:
+            console.error("Paso no reconocido:", paso);
     }
 }
+
 
 // Validate first step - check if fields are not empty
 function validaPaso1() {
@@ -296,3 +297,46 @@ document.addEventListener('DOMContentLoaded', () => {
     // Reset title
     document.getElementById("title-paso").textContent = "Datos";
 });
+
+async function importCarro() {
+    // Recuperar el carrito desde LocalStorage
+    let carrito = localStorage.getItem("cart");
+    if (!carrito) {
+        console.error("El carrito está vacío");
+        return;
+    }
+
+    // Convertir a objeto JSON
+    carrito = JSON.parse(carrito);
+
+    try {
+        const response = await fetch("http://127.0.0.1:8000/load_carrito", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": getToken()
+            },
+            body: JSON.stringify(carrito)
+        });
+        
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        
+        return await response.json();
+    } catch (error) {
+        console.error("Error al cargar el carrito:", error);
+    }
+}
+  
+function getToken() {
+    const cookie = document.cookie.split('; ').find(row => row.startsWith('csrftoken='));
+    return cookie ? cookie.split('=')[1] : null;
+};
+
+function vaciarCarro() {
+    // Se elimina el carrito del localStorage
+
+    localStorage.removeItem("cart");
+    window.location.href = "/";
+};
