@@ -50,7 +50,7 @@ class Producto(models.Model):
     categoria = models.ForeignKey("CategoriaProductos", on_delete=models.CASCADE, db_column="idCategoria", max_length=10)
 
     def __str__(self):
-            return f"Producto: {self.nombre}" 
+            return f"Producto: {str(self.idProducto)+' '+self.nombre}" 
         
     @property
     def imagenURL(self):

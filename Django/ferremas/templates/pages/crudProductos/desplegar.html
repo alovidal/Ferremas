@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ferremas</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'assets/isotipoR.png' %}" />
+    <link rel="stylesheet" href="{% static 'css/jaime.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/general.css' %}" />
+</head>
+
+<body>
+    {% include 'base/header.html'%}
+
+    <main class="contenedor-principal">
+        <div class="contenedor-sombreado">
+            <div class="contenedor-verordenes">
+                <div class="row">
+                    <h2 class="my-3">Productos</h2><br>
+
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                                <th>Marca</th>
+                                <th>Categoría</th>
+                                <th>Imagen</th>
+                                <th>Eliminar</th>
+                                <th>Actualizar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for producto in productos %}
+                            <tr>
+                                <td>{{ producto.idProducto }}</td>
+                                <td>{{ producto.nombre }}</td>
+                                <td>{{ producto.descripcion }}</td>
+                                <td>{{ producto.precio }}</td>
+                                <td>{{ producto.stock }}</td>
+                                <td>{{ producto.marca.descripcion }}</td>
+                                <td>{{ producto.categoria.descripcion }}</td>
+                                <td>
+                                    {% if producto.imagen %}
+                                    <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" style="width: 50%;" />
+                                    {% else %}
+                                    No disponible
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{% url 'eliminar-prod' producto.idProducto %}">
+                                        <button class="btn rojo">Eliminar</button>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{% url 'actualizar-prod' producto.idProducto %}">
+                                        <button class="btn verde">Actualizar</button>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <a href="{% url 'agregar-prod' %}">
+                        <button class="btn verde">Agregar</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+    {% include 'base/footer.html'%}
+</body>
+
+
+</html>
